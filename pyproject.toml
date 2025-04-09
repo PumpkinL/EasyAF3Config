@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "easyaf3config"
+version = "0.1.0"
+description = "A tool to easily create and manage AlphaFold3 configuration files"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Liu Chengkun", email = "chengkun.liu@velavigo.com"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "biopython>=1.80",
+]
+
+[project.optional-dependencies]
+# Development dependencies
+dev = [
+    "black>=23.0.0",        # Code formatting
+    "isort>=5.0.0",         # Import sorting
+    "flake8>=6.0.0",        # Linting
+    "mypy>=1.0.0",          # Type checking
+    "pre-commit>=3.0.0",    # Pre-commit hooks
+]
+
+# Testing dependencies
+test = [
+    "pytest>=7.0.0",        # Testing framework
+    "pytest-cov>=4.0.0",    # Coverage reporting
+    "pytest-mock>=3.10.0",  # Mocking support
+]
+
+# Documentation dependencies
+docs = [
+    "sphinx>=7.0.0",        # Documentation generator
+    "sphinx-rtd-theme>=1.2.0", # Read the Docs theme
+    "myst-parser>=2.0.0",   # Markdown support for Sphinx
+]
+
+# All dependencies (combines all above)
+all = [
+    "easyaf3config[dev,test,docs]",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/yourusername/easyaf3config"
+"Bug Tracker" = "https://github.com/yourusername/easyaf3config/issues"
+
+[project.scripts]
+fa2json = "easyaf3config.cli.fa2json:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/easyaf3config"]
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
